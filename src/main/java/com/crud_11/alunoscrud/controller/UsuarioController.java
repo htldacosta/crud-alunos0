@@ -1,26 +1,26 @@
 package com.crud_11.alunoscrud.controller;
 
 import com.crud_11.alunoscrud.business.UsuarioService;
-import com.crud_11.alunoscrud.infrastructure.entities.Usuario;
+import com.crud_11.alunoscrud.infrastructure.entities.Aluno;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/usuario")
+@RequestMapping("/aluno")
 @RequiredArgsConstructor
 public class UsuarioController {
 
     private final UsuarioService usuarioService;
 
     @PostMapping
-    public ResponseEntity<Void> salvarUsuario(@RequestBody Usuario usuario){
+    public ResponseEntity<Void> salvarUsuario(@RequestBody Aluno usuario){
         usuarioService.salvarUsuario(usuario);
         return ResponseEntity.ok().build();
     }
 
     @GetMapping
-    public ResponseEntity<Usuario> buscarUsuarioPorEmail(@RequestParam String email){
+    public ResponseEntity<Aluno> buscarUsuarioPorEmail(@RequestParam String email){
         return ResponseEntity.ok(usuarioService.buscarUsuarioPorEmail(email));
     }
 
@@ -32,7 +32,7 @@ public class UsuarioController {
 
     @PutMapping
     public ResponseEntity<Void> atualizarUsuarioPorId(@RequestParam Integer id,
-                                                      @RequestBody Usuario usuario){
+                                                      @RequestBody Aluno usuario){
 
         usuarioService.atualizarUsuarioPorId(id, usuario);
         return ResponseEntity.ok().build();

@@ -1,6 +1,6 @@
 package com.crud_11.alunoscrud.business;
 
-import com.crud_11.alunoscrud.infrastructure.entities.Usuario;
+import com.crud_11.alunoscrud.infrastructure.entities.Aluno;
 import com.crud_11.alunoscrud.infrastructure.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +14,11 @@ public class UsuarioService {
         this.repository = repository;
     }
 
-    public void salvarUsuario(Usuario usuario){
+    public void salvarUsuario(Aluno usuario){
         repository.saveAndFlush(usuario);
     }
 
-    public Usuario buscarUsuarioPorEmail(String email){
+    public Aluno buscarUsuarioPorEmail(String email){
 
         return repository.findByEmail(email).orElseThrow(
                 () -> new RuntimeException("Email não encontrado!")
@@ -29,11 +29,11 @@ public class UsuarioService {
         repository.deleteByEmail(email);
     }
 
-    public void atualizarUsuarioPorId(Integer id, Usuario usuario){
-        Usuario usuarioEntity = repository.findById(id).orElseThrow(
+    public void atualizarUsuarioPorId(Integer id, Aluno usuario){
+        Aluno usuarioEntity = repository.findById(id).orElseThrow(
                 () -> new RuntimeException("Usuario Não encontrado")
         );
-        Usuario usuarioAtualizado = Usuario.builder()
+        Aluno usuarioAtualizado = Aluno.builder()
                 .email(usuario.getEmail() != null ? usuario.getEmail() :
                         usuarioEntity.getEmail())
                 .nome(usuario.getNome() != null ? usuario.getNome() :

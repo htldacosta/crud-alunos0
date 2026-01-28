@@ -9,8 +9,8 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "usuario")
-public class Usuario {
+@Table(name = "aluno")
+public class Aluno {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,4 +21,10 @@ public class Usuario {
 
     @Column(name = "nome")
     private String nome;
+
+    @Column(name = "matricula", unique = true)
+    private String matricula;
+
+    @Column(name = "curso")
+    private Enum curso;
 }
