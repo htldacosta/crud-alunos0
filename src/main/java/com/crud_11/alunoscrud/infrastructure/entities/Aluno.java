@@ -1,5 +1,6 @@
 package com.crud_11.alunoscrud.infrastructure.entities;
 
+import com.crud_11.alunoscrud.infrastructure.enums.Curso;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,18 +14,19 @@ import lombok.*;
 public class Aluno {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "email", unique = true)
-    private String email;
-
-    @Column(name = "nome")
+    @Column(name = "nome", nullable = false)
     private String nome;
 
-    @Column(name = "matricula", unique = true)
+    @Column(name = "email", unique = true, nullable = false)
+    private String email;
+
+    @Column(name = "matricula", unique = true, nullable = false)
     private String matricula;
 
-    @Column(name = "curso")
-    private Enum curso;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "curso", nullable = false)
+    private Curso curso;
 }
