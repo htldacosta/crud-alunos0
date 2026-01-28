@@ -8,10 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 @Repository
-public interface UsuarioRepository extends JpaRepository <Aluno, Integer>{
+public interface AlunoRepository extends JpaRepository <Aluno, Integer>{
 
-    Optional<Aluno> findByEmail(String email);
-
-    @Transactional
-    void deleteByEmail(String email);
+    boolean existsByEmail(String email);
+    boolean existsByMatricula(String matricula);
 }
