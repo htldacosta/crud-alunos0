@@ -14,7 +14,7 @@ public class UsuarioService {
         this.repository = repository;
     }
 
-    public void salvrUsuario(Usuario usuario){
+    public void salvarUsuario(Usuario usuario){
         repository.saveAndFlush(usuario);
     }
 
