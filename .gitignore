@@ -31,3 +31,11 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# --- Docker & Ambiente ---
+.env
+docker-compose.override.yml
+
+# --- Sistema Operacional (Lixo) ---
+.DS_Store
+Thumbs.db
