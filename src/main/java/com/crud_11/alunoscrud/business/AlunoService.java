@@ -51,6 +51,26 @@ public class AlunoService {
                 .orElseThrow(() -> new RuntimeException("Aluno não encontrado com ID: " + id));
     }
 
+    public AlunoResponseDTO atualizarAluno(Integer id, AlunoRequestDTO dto) {
+
+        Aluno alunoExistente = alunoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Aluno não encontrado para atualização"));
+
+        if (!alunoExistente.getEmail().equals(dto.email()) && alunoRepository.existsByEmail(dto.email())) {
+            throw new IllegalArgumentException("O novo email informado já pertence a outro aluno.");
+        }
+
+        alunoExistente.setNome(dto.nome());
+        alunoExistente.setEmail(dto.email());
+        alunoExistente.setMatricula(dto.matricula());
+        alunoExistente.setCurso(dto.curso());
+
+
+        Aluno alunoAtualizado = alunoRepository.save(alunoExistente);
+        
+        return AlunoResponseDTO.paraDTO(alunoAtualizado);
+    }
+
     public void deletarPorId(Integer id) {
         if (!alunoRepository.existsById(id)) {
             throw new RuntimeException("Aluno não encontrado para exclusão.");
